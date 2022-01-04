@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { getSession } from 'next-auth/react';
+import { connectToDatabase } from '../../../util/mongodb';
 
 import Dashboard from '../../../components/auth/Dashboard';
 import Profile from '../../../components/auth/public/Profile';
@@ -72,15 +73,15 @@ export async function getServerSideProps(context) {
     registerNumber: logged.registerNumber ? logged.registerNumber : null,
   };
 
-  const response = await fetch(`${process.env.base_url}/api/institutes`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  const { db } = await connectToDatabase();
+  const collected = await db.collection('institutes').find({}).toArray();
+  var institutes = [];
+  collected.map((item) => {
+    institutes.push({
+      id: item._id.toString(),
+      name: item.name,
+    });
   });
-  const data = await response.json();
-  const institutes = data.institutes;
-
   return {
     props: { session, profile, institutes },
   };

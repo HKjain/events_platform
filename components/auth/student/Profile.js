@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/react';
 
 function Profile({ profile, institutes }) {
   const states = getStates();
-
+  const [message, setMessage] = useState();
   const contactRef = useRef(null);
   const genderRef = useRef(null);
   const dobRef = useRef(null);
@@ -13,7 +13,7 @@ function Profile({ profile, institutes }) {
   const githubRef = useRef(null);
   const addressRef = useRef(null);
   const instituteRef = useRef(null);
-  const iEmailRef = useRef(null);
+  // const iEmailRef = useRef(null);
   const degreeRef = useRef(null);
   const semesterRef = useRef(null);
   const registerRef = useRef(null);
@@ -29,13 +29,13 @@ function Profile({ profile, institutes }) {
       github: githubRef.current.value,
       address: addressRef.current.value,
       institute: instituteRef.current.value,
-      iEmail: iEmailRef.current.value,
+      // iEmail: iEmailRef.current.value,
       degree: degreeRef.current.value,
       semester: semesterRef.current.value,
       registerNumber: registerRef.current.value,
     };
     const session = await getSession();
-    console.log(session);
+
     const response = await fetch(`/api/profile/${session.user.name._id}`, {
       method: 'POST',
       body: JSON.stringify(profileData),
@@ -43,10 +43,18 @@ function Profile({ profile, institutes }) {
         'Content-Type': 'application/json',
       },
     });
+    setMessage(
+      'Updated Successfully!.. Login again to see the updates changes!'
+    );
   };
 
   return (
     <form onSubmit={submitHandler} className="p-3 rounded-lg">
+      {message && (
+        <h5 className="bg-green-600 text-xs w-[50%] mx-auto p-2 rounded-lg text-center text-white font-bold tracking-wider mb-2">
+          {message}
+        </h5>
+      )}
       <div className="bg-white h-96 sm:h-[75vh] overflow-scroll shadow-2xl sm:w-[96%] mx-auto grid grid-cols-1 gap-2 divide-indigo-700 divide-y-4 md:divide-y-0 md:divide-x-4 md:grid-cols-2 p-3 text-gray-900 rounded-lg">
         <div className="flex flex-col pl-1 pt-1 pb-1">
           <h1 className="font-montserrat">Personal Information</h1>
@@ -285,7 +293,7 @@ function Profile({ profile, institutes }) {
           </div>
 
           {/* College Email */}
-          <div className="flex gap-1 mt-2 bg-indigo-500 shadow-xl px-2 py-2 rounded-xl">
+          {/* <div className="flex gap-1 mt-2 bg-indigo-500 shadow-xl px-2 py-2 rounded-xl">
             <div className="grow">
               <h6 className="text-xs font-semibold text-zinc-200 mb-1">
                 Institute Email Address
@@ -300,7 +308,7 @@ function Profile({ profile, institutes }) {
                 ref={iEmailRef}
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Degree */}
           <div className="flex gap-1 mt-2 bg-indigo-500 shadow-xl px-2 py-2 rounded-xl">

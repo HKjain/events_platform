@@ -4,8 +4,8 @@ import { getSession } from 'next-auth/react';
 import { connectToDatabase } from '../../../util/mongodb';
 
 import Dashboard from '../../../components/auth/Dashboard';
-import Profile from '../../../components/auth/public/Profile';
-import RegisteredEvents from '../../../components/auth/public/RegisteredEvents';
+import Profile from '../../../components/auth/student/Profile';
+import RegisteredEvents from '../../../components/auth/student/RegisteredEvents';
 
 function PublicAuthHome({ profile, institutes }) {
   let first_name = profile.first_name;

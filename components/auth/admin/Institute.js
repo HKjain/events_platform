@@ -14,12 +14,12 @@ function Institute({ institute }) {
           institute.isActive ? 'bg-green-600' : 'bg-red-600'
         }`}
       ></span>
-      <button className="px-3 uppercase font-bold sm:tracking-wide my-1 py-1 hover:shadow-md hover:scale-95 transition-all ease-in-out duration-300  text-xs mx-1  rounded-full text-white outline-none border-0 bg-green-600">
+      {/* <button className="px-3 uppercase font-bold sm:tracking-wide my-1 py-1 hover:shadow-md hover:scale-95 transition-all ease-in-out duration-300  text-xs mx-1  rounded-full text-white outline-none border-0 bg-green-600">
         Activate
       </button>
       <button className="px-3 uppercase font-bold sm:tracking-wide my-1 py-1 hover:shadow-md hover:scale-95 transition-all ease-in-out duration-300  text-xs mx-1 rounded-full text-white outline-none border-0 bg-red-600">
         Deactivate
-      </button>
+      </button> */}
     </div>
   );
 }

@@ -32,11 +32,16 @@ function Navbar() {
 
   useEffect(() => {
     if (session?.user?.name?.is_student) {
-      setLinks([...base, { id: 3, url: '/auth/public', title: 'Dashboard' }]);
+      setLinks([...base, { id: 3, url: '/auth/student', title: 'Dashboard' }]);
     } else if (session?.user?.name?.is_institute) {
       setLinks([
         ...base,
         { id: 5, url: '/auth/institute', title: 'Institute' },
+      ]);
+    } else {
+      setLinks([
+        ...base,
+        { id: 5, url: '/auth/admin/dashboard', title: 'Admin' },
       ]);
     }
   }, [session]);

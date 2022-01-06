@@ -215,6 +215,8 @@ function RegisterForm() {
               type="email"
               required
               ref={emailRef}
+              title="Email should be of @nitk.edu.in"
+              pattern="^[a-zA-Z0-9+_.-]+@nitk.edu.in$"
               name="email"
               id="email"
             />

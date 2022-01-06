@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { getSession } from 'next-auth/react';
 
@@ -9,6 +9,7 @@ import RegisteredStudents from '../../../components/auth/institute/RegisteredStu
 import Dashboard from '../../../components/auth/Dashboard';
 
 function InstituteHome() {
+  const [institute, setInstitute] = useState();
   const menuItems = [
     { id: 1, name: 'Add Event', slug: 'add_event', component: <AddEvent /> },
     {
@@ -25,10 +26,16 @@ function InstituteHome() {
     },
   ];
 
+  useEffect(() => {
+    getSession().then((session) => {
+      setInstitute(session.user.name?.institute_name);
+    });
+  }, []);
+
   return (
     <div>
       <Head>
-        <title>Welcome!</title>
+        <title>Welcome, {institute}</title>
       </Head>
       <Dashboard menuItems={menuItems} />
     </div>

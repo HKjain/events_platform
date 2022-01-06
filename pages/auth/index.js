@@ -13,9 +13,7 @@ function AuthPage() {
     getSession().then((session) => {
       if (session) {
         router.replace('/');
-      } else if (localStorage.getItem('isAdmin'))
-        router.replace('/auth/admin/dashboard');
-      else {
+      } else {
         setIsLoading(false);
       }
     });

@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { connectToDatabase, promise } from '../../../util/mongodb';
+import { connectToDatabase } from '../../../util/mongodb';
 import { verifyPassword } from '../../../util/auth';
 
 export default NextAuth({
@@ -16,6 +16,20 @@ export default NextAuth({
         const { db } = await connectToDatabase();
 
         if (!db) throw new Error('Database Connection Failed!');
+
+        if (credentials.is_admin) {
+          const adminsCollectionn = db.collection('admins');
+          const admin = await adminsCollectionn.findOne({
+            email: credentials.email,
+            password: credentials.password,
+          });
+          if (!admin) throw new Error('Invalid Credentials!');
+          const newData = {
+            ...admin,
+            is_admin: true,
+          };
+          return { name: newData };
+        }
 
         const usersCollection = db.collection('users');
 

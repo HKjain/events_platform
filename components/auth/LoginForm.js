@@ -45,7 +45,7 @@ function LoginForm() {
     const s = await getSession();
     if (s?.user) {
       const next = s?.user?.name?.is_student
-        ? '/auth/public'
+        ? '/auth/student'
         : '/auth/institute';
       router.push(next);
     }
@@ -72,6 +72,8 @@ function LoginForm() {
               type="email"
               name="email"
               id="email"
+              // title="Email should be of @nitk.edu.in"
+              // pattern="^[a-zA-Z0-9+_.-]+@nitk.edu.in$"
               required
             />
           </div>

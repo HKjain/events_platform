@@ -38,7 +38,7 @@ function Navbar() {
         ...base,
         { id: 5, url: '/auth/institute', title: 'Institute' },
       ]);
-    } else if (ssession?.user?.name?.isAdmin) {
+    } else if (session?.user?.name?.isAdmin) {
       setLinks([
         ...base,
         { id: 5, url: '/auth/admin/dashboard', title: 'Admin' },

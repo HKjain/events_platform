@@ -10,7 +10,7 @@ function Carousel({ events, type }) {
           {type}
         </h1>
       </div>
-      <div className="flex-1 m-2 px-3 flex rounded-md overflow-y-auto pt-3 pb-3 space-x-8 snap-both">
+      <div className="flex-1 m-2 px-3 justify-center flex rounded-md overflow-y-auto pt-3 pb-3 space-x-8 snap-both">
         {events.map((event, index) => (
           <EventCard key={index} event={event} />
         ))}

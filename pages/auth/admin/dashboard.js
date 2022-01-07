@@ -6,9 +6,10 @@ import { connectToDatabase } from '../../../util/mongodb';
 
 import Loading from '../../../components/ui/Loading';
 import Authorize from '../../../components/auth/admin/Authorize';
+import Contacts from '../../../components/auth/admin/Contacts';
 import Dashboard from '../../../components/auth/Dashboard';
 
-function AdminDashboard({ institutes }) {
+function AdminDashboard({ institutes, contacts }) {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
@@ -29,6 +30,12 @@ function AdminDashboard({ institutes }) {
       name: 'Authorize Institutes',
       slug: 'institute_auth',
       component: <Authorize institutes={institutes} />,
+    },
+    {
+      id: 2,
+      name: 'Inquiries',
+      slug: 'inquiries',
+      component: <Contacts contacts={contacts} />,
     },
   ];
 
@@ -60,9 +67,21 @@ export async function getServerSideProps() {
     });
   }
 
+  const con = await db.collection('contacts').find().toArray();
+  let contacts = [];
+  for (let i = 0; i < con.length; i++) {
+    contacts.push({
+      _id: con[i]._id.toString(),
+      name: con[i].name,
+      email: con[i].email,
+      message: con[i].message,
+    });
+  }
+
   return {
     props: {
       institutes,
+      contacts,
     },
   };
 }

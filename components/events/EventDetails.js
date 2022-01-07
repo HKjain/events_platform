@@ -167,7 +167,7 @@ function EventDetails({ event }) {
               Register
             </button>
           </div>
-          <p className="mt-4 text-sm leading-6 col-start-1 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1 ">
+          <p className="mt-4 text-sm text-gray-600 tracking-wide leading-6 col-start-1 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1 ">
             {event.description}
           </p>
         </div>

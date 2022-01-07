@@ -36,7 +36,7 @@ async function handler(req, res) {
         .collection('events')
         .find({ $or: findIds })
         .toArray();
-      console.log('called above');
+      // console.log('called above');
       res.json({ events: eventsDetails });
       return;
     } else {
@@ -49,12 +49,30 @@ async function handler(req, res) {
         .find({ $or: findIdsE })
         .toArray();
 
+      const trial = [];
+      for (let i = 0; i < usersList.length; i++) {
+        const current = usersList[i];
+        const userD = await db
+          .collection('users')
+          .findOne(
+            { _id: ObjectId(current.userId) },
+            { email: 1, institute_name: 1 }
+          );
+        const temp = {
+          ...current,
+          email: userD.email,
+          institute_name: userD.institute,
+        };
+        trial.push(temp);
+      }
+
       if (usersList.length === 0) {
         res.json({ users: null });
         return;
       }
-      console.log(usersList);
-      res.json({ users: usersList });
+      // console.log(usersList);
+      // console.log(trial);
+      res.json({ users: trial });
       return;
     }
   }

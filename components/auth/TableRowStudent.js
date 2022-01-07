@@ -30,7 +30,7 @@ function TableRow({ student, index }) {
       <th>{index + 1}</th>
       <td>{student.first_name}</td>
       <td>{student.last_name}</td>
-      <td>{student.iEmail}</td>
+      <td>{student.email}</td>
       <td>{student.eventName}</td>
       <td>{student.institute_name}</td>
       <td>{readableDate}</td>

@@ -65,5 +65,6 @@ export async function getStaticProps() {
       ongoingEvents,
       upcomingEvents,
     },
+    revalidate: 10,
   };
 }

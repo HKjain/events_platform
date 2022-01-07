@@ -152,6 +152,7 @@ export async function getStaticProps() {
       allEvents: events,
       institutes,
     },
+    revalidate: 10,
   };
 }
 

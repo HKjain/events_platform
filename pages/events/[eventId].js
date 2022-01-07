@@ -54,6 +54,7 @@ export async function getStaticProps(context) {
   if (!fetchedEvent) {
     return {
       notFound: true,
+      revalidate: 10,
     };
   }
 
@@ -67,5 +68,6 @@ export async function getStaticProps(context) {
     props: {
       event,
     },
+    revalidate: 10,
   };
 }

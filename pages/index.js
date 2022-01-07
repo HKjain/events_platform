@@ -18,18 +18,22 @@ export default function Home({ ongoingEvents, upcomingEvents }) {
       {/* Hero Section */}
       <Hero />
       {/* Ongoing Events */}
-      <Carousel
-        key="ongoing_events"
-        type="Ongoing Events"
-        events={ongoingEvents}
-      />
+      {ongoingEvents.length >= 1 && (
+        <Carousel
+          key="ongoing_events"
+          type="Ongoing Events"
+          events={ongoingEvents}
+        />
+      )}
 
       {/* Upcoming Events */}
-      <Carousel
-        key="upcoming_events"
-        type="Upcoming Events"
-        events={upcomingEvents}
-      />
+      {upcomingEvents.length >= 1 && (
+        <Carousel
+          key="upcoming_events"
+          type="Upcoming Events"
+          events={upcomingEvents}
+        />
+      )}
 
       {/* Newsletter Section */}
       <Newsletter />

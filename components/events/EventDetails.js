@@ -24,6 +24,18 @@ const month = [
 
 function EventDetails({ event }) {
   const [message, setMessage] = useState(null);
+
+  const imageF = `/images/${event.institute_name}.jpg`;
+  let image;
+  if (
+    event.institute_name === 'National Institute of Technology, Patna' ||
+    event.institute_name === 'National Institute of Technology, Raipur' ||
+    event.institute_name === 'National Institute of Technology, Warangal'
+  ) {
+    image = `/images/logos/${event.institute_name}.jpg`;
+  } else {
+    image = `/images/logos/${event.institute_name}.png`;
+  }
   const handleRegister = async () => {
     const eventId = event._id;
     const session = await getSession();
@@ -74,29 +86,29 @@ function EventDetails({ event }) {
             <h1 className="mt-1 uppercase font-montserrat text-lg font-semibold text-white sm:text-indigo-600 md:text-2xl ">
               {event.eventName}
             </h1>
-            <p className="text-sm leading-4 font-medium text-white sm:text-gray-500 ">
-              {event.institute}
+            <p className="text-sm leading-4 font-medium md:text-lg text-white sm:text-indigo-600 ">
+              {event.institute_name}
             </p>
           </div>
           <div className="grid gap-4 col-start-1 col-end-3 row-start-1 sm:mb-6 sm:grid-cols-4 lg:gap-6 lg:col-start-2 lg:row-end-6 lg:row-span-6 lg:mb-0">
             <img
-              src="/beach-house.jpg"
-              alt=""
+              src={imageF}
+              style={{ objectFit: '' }}
               className="w-full h-60 object-cover rounded-lg sm:h-52 sm:col-span-2 lg:col-span-full"
               loading="lazy"
             />
             <img
-              src="/beach-house-interior-1.jpg"
-              alt=""
+              src={image}
+              style={{ objectFit: 'contain' }}
               className="hidden w-full h-52 object-cover rounded-lg sm:block sm:col-span-2 md:col-span-1 lg:row-start-2 lg:col-span-2 lg:h-32"
               loading="lazy"
             />
-            <img
+            {/* <img
               src="/beach-house-interior-2.jpg"
               alt=""
               className="hidden w-full h-52 object-cover rounded-lg md:block lg:row-start-2 lg:col-span-2 lg:h-32"
               loading="lazy"
-            />
+            /> */}
           </div>
 
           <dl className="mt-4 transition-all ease-in-out text-xs font-medium flex flex-col items-start gap-2 row-start-2 sm:mt-1 sm:row-start-3 md:mt-2.5 lg:row-start-2">

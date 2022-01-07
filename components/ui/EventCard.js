@@ -2,19 +2,27 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import ev from '../../public/images/events.jpg';
 import CollegeIcon from '../icons/CollegeIcon';
 
 function EventCard({ event }) {
   const detailsUrl = `/events/${event._id}`;
-
+  let image;
+  if (
+    event.institute_name === 'National Institute of Technology, Patna' ||
+    event.institute_name === 'National Institute of Technology, Raipur' ||
+    event.institute_name === 'National Institute of Technology, Warangal'
+  ) {
+    image = `/images/logos/${event.institute_name}.jpg`;
+  } else {
+    image = `/images/logos/${event.institute_name}.png`;
+  }
   return (
-    <div>
+    <div className="snap-center">
       <div className="bg-indigo-600 duration-500 hover:scale-105 hover:cursor-pointer transition-all ease-in-out p-2 w-52 mx-auto drop-shadow-4xl rounded-lg my-2">
         <div className="flex flex-col justify-center items-center">
           {/* Image */}
-          <div className="w-28 rounded-lg overflow-hidden drop-shadow-5xl relative h-28">
-            <Image src={ev} layout="fill" objectFit="cover" />
+          <div className="w-28 rounded-lg bg-white overflow-hidden drop-shadow-5xl relative h-28">
+            <Image src={image} width={112} height={112} objectFit="cover" />
           </div>
           {/* Details */}
           <div className="w-full mt-2 mb-1 text-white flex flex-col p-2">

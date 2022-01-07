@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Card from '../ui/Card';
+import EventCard from '../ui/EventCard';
 
 function Carousel({ events, type }) {
   return (
@@ -10,9 +10,9 @@ function Carousel({ events, type }) {
           {type}
         </h1>
       </div>
-      <div className="flex-1 m-2 flex rounded-md overflow-y-auto pt-3 pb-3 space-x-8 snap-both">
+      <div className="flex-1 m-2 px-3 flex rounded-md overflow-y-auto pt-3 pb-3 space-x-8 snap-both">
         {events.map((event, index) => (
-          <Card key={index} event={event} />
+          <EventCard key={index} event={event} />
         ))}
       </div>
     </div>

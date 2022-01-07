@@ -26,7 +26,7 @@ export default NextAuth({
           if (!admin) throw new Error('Invalid Credentials!');
           const newData = {
             ...admin,
-            isAdmin: true,
+            is_admin: true,
           };
           return { name: newData };
         }

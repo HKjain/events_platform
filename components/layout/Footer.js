@@ -6,9 +6,6 @@ function Footer() {
       <h1 className="font-semibold tracking-wide">
         Copyright © 2021 EventsForYou
       </h1>
-      <h1 className="text-sm font-medium">
-        Made with <span className="text-red-600">❤</span> by Harsh Kawadia
-      </h1>
     </div>
   );
 }

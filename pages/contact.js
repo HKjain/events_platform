@@ -53,13 +53,13 @@ function Contact() {
                   <span>
                     <LocalPhoneIcon />
                   </span>
-                  <span>+91 6353693537</span>
+                  <span>+91 9999999999</span>
                 </div>
                 <div className="justify-center flex  items-center space-x-2 ">
                   <span>
                     <AlternateEmailIcon />
                   </span>
-                  <span>harshkawadia8.hk@gmail.com</span>
+                  <span>abc@gmail.com</span>
                 </div>
               </div>
             </div>
